@@ -3,11 +3,11 @@ kind: Ingress
 metadata:
   name: spawner
   annotations:
-    homeroom/title: "Markdown Sample"
-    homeroom/description: "A sample workshop using Markdown."
+    homeroom/title: "Kubernetes and Openshift for JS Developers"
+    homeroom/description: "A hands-on intro to Kubernetes and OpenShift for JS developers."
 spec:
   rules:
-  - host: "lab-markdown-sample.${CLUSTER_SUBDOMAIN}"
+  - host: "lab-k8s-for-js.${CLUSTER_SUBDOMAIN}"
     http:
       paths:
       - path: "/"

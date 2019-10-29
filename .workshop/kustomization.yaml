@@ -4,10 +4,10 @@ kind: Kustomization
 bases:
 - https://github.com/openshift-homeroom/workshop-spawner/resources/overlays/learning-portal?ref=develop
 
-namePrefix: lab-markdown-sample-
+namePrefix: lab-k8s-for-js-
 
 commonLabels:
-  app: lab-markdown-sample
+  app: lab-k8s-for-js
 
 configMapGenerator:
 - name: spawner-environ

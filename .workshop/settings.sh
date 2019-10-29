@@ -5,3 +5,4 @@ WORKSHOP_DESCRIPTION="A hands-on introduction to Kubernetes and OpenShift for JS
 RESOURCE_BUDGET=large
 MAX_SESSION_AGE=9600
 IDLE_TIMEOUT=600
+SPAWNER_PASSWORD=openshift

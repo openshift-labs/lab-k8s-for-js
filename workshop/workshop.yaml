@@ -3,6 +3,7 @@ name: Kubernetes and OpenShift for JS Developers
 modules:
     activate:
     - workshop-overview
-    - setup-environment
-    - exercises/01-sample-content
-    - workshop-summary
+    - 01-cli-console
+    - 02-build-from-source
+    - 03-git-push-to-deploy
+    - 04-additional-tools-info

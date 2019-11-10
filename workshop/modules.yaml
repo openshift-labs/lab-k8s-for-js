@@ -1,12 +1,17 @@
 modules:
     workshop-overview:
         name: Workshop Overview
-        exit_sign: Setup Environment
-    setup-environment:
-        name: Setup Environment
-        exit_sign: Start Workshop
-    exercises/01-sample-content:
-        name: Sample Content
-    workshop-summary:
-        name: Workshop Summary
+        exit_sign: Continue
+    01-cli-console:
+        name: OpenShift CLI and Web Console
+        exit_sign: Build from Source
+    02-build-from-source:
+        name: Building from Source Code
+        exit_sign: Git Push to Deploy
+    03-git-push-to-deploy:
+        name: Git Push to Deploy
+        exit_sign: Additional Tools and Info
+    04-additional-tools-info:
+        name: Additional Tools and Info
         exit_sign: Finish Workshop
+

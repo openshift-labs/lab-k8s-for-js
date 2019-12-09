@@ -15,6 +15,11 @@ mv workshop /opt/app-root/workshop
 
 rm -f Dockerfile README.md LICENSE
 
+## download 1.16 kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/linux/amd64/kubectl
+chmod 755 kubectl
+mv kubectl /opt/app-root/bin/kubectl
+
 # If the workshop requires Git, it is necessary to set some defaults for
 # the name and email of the user for Git.
 

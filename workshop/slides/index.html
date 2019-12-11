@@ -24,6 +24,7 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+		<!--
 
 <section data-background-transition="none-in zoom-out" data-transition="zoom" id="HANDS-ON" data-background="https://gist.githubusercontent.com/ryanj/9181e48c0dd8e6b45d692a11d5a72bd5/raw/9892bcb34a809c25c24c43a2ea33bb69b7684f0b/node-js-interactive-1.jpg" data-background-color="black" data-background-size="cover" data-background-position="top">
     <h3 style="color:white;padding-top:26%;">Hands-on Intro to</h3>
@@ -31,6 +32,15 @@
     <h3 style="color:white;">{ for JS Developers }</h3>
     <p class='fragment grow'><a style="font-weight:bold;" href="http://gist-reveal.it/bit.ly/nodejs-on-k8s?theme=9181e48c0dd8e6b45d692a11d5a72bd5">bit.ly/nodejs-on-k8s</a></p>
     <p><a href="https://www.nodeconf.eu/nc-agenda/">Monday, November 11 16:00 - 17:30</a></p>
+  </section> 
+                -->
+  
+<section data-background-transition="none-in zoom-out" data-transition="zoom" id="HANDS-ON" data-background-color="white">
+    <h3 style="padding-top:26%;">Hands-on Intro to</h3>
+    <h1 style="font-size:113px;">Kubernetes & OpenShift</h1>
+    <h3>{ for JS Developers }</h3>
+    <p class='fragment grow'><a style="font-weight:bold;" href="http://bit.ly/k8s-interactive">bit.ly/k8s-interactive</a></p>
+    <p><a href="https://sched.co/T5Ga">Thursday, Dec 12 9:00 - 10:50, Room 512D</a></p>
   </section> 
   
   <section>
@@ -108,24 +118,13 @@
     * [is](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/): an ops tool; a collection of APIs for managing container-based workloads
     * [is not](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#what-kubernetes-is-not): a PaaS
     </section>
-   
-    <section id='all-the-most-popular-platforms' data-background='black'> 
-  <h2 style="color: white;">2017 Octoverse Report</h2>
-    
-  <blockquote style="color:white;">🏆 Most-discussed on GitHub in 2017!</blockquote>
-    
-  <p style="color: white;"><a href="http://octoverse.github.com">http://octoverse.github.com</a></p>
-    
-  <p style="color:white;"><a href="https://kubernetes.io/blog/2018/04/25/open-source-charts-2017">Kubernetes Community - Top of the Open Source Charts in 2017</a>
-    </section>
     
     <section id='openshift' data-markdown>
     # OpenShift
   
-    * includes, extends, &amp; is a distribution of: Kubernetes
+    * a CNCF certified distribution of Kubernetes
     * adds: Multi-tenant security, PaaS-style workflows, Service Catalog and Brokers, a container registry, distributed metrics and logs ...
     
-    ![octoverse_chart](https://d33wubrfki0l68.cloudfront.net/d5511b44cad712d8ba3e7139448c081366808fa0/27939/images/blog-logging/2018-04-24-open-source-charts-2017/most-discussed.png)
     </section>
   
     <section id='more-info'>
@@ -148,92 +147,7 @@
   Minimal requirements:
   
     * *a web browser with JS enabled*
-    
   
-  ↓
-  </section>
-  
-  
-  <section id='kubectl'>
-    <h3>Install <code>kubectl</code></h3>
-    <p>For detailed installation notes, see the <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/"><code>kubectl</code> install doc</a></p>
-    <p>One line install for linux/amd64:</p>
-    <pre><code contenteditable>curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl &amp;&amp; chmod +x kubectl &amp;&amp; sudo mv kubectl /usr/local/bin/
-  </code></pre> 
-    <p>One line install for macOS:</p>
-    <pre><code contenteditable>curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl &amp;&amp; chmod +x kubectl &amp;&amp; sudo mv kubectl /usr/local/bin/
-  </code></pre>
-    <br/>
-    <p>To verify <code>kubectl</code> availability, try running:</p>
-    <pre><code contenteditable>kubectl help</code></pre>
-  </section>
-  
-  <section id='oc'>
-    <h3>Install <code>oc</code></h3>
-    <p>For detailed installation notes, see the <a href="https://docs.openshift.org/latest/cli_reference/get_started_cli.html"><code>oc</code> installation doc</a></p>
-    <p>One line install for linux/amd64:</p>
-    <pre><code contenteditable>curl -Lo oc.tar.gz https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz &amp;&amp; tar xvzf oc.tar.gz */oc &amp;&amp; sudo mv $_ /usr/local/bin/ &amp;&amp; rm -d openshift-origin-client-tools-* &amp;&amp; rm oc.tar.gz</code></pre> 
-    <p>One line install for macOS:</p>
-    <pre><code contenteditable>curl -Lo oc.zip https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-mac.zip &amp;&amp; tar xvzf oc.zip oc &amp;&amp; sudo mv oc /usr/local/bin/ &amp;&amp; rm oc.zip</code></pre>
-    <br/>
-    <p>To verify <code>oc</code> availability, try running:</p>
-    <pre><code contenteditable>oc help</code></pre>
-  </section>
-  
-  <section id='bash'>
-    <h3>Bash for Windows</h3>
-    <p>Windows users should install the <code>Windows Subsystem for Linux</code> and related command-line tools:</p>
-    <p>Enable <b>Control Panel > Programs > Windows Features > Windows Subsystem for Linux</b></p>
-  </section>
-  
-  <section id='minishift'>
-    <h3>Install <code>minishift</code></h3>
-    <p>For detailed installation notes, see the <a href="https://github.com/minishift/minishift/releases"><code>minishift</code> release notes</a></i></p>
-    <p>One line install for linux/amd64:</p>
-    <pre><code contenteditable>curl -Lo minishift.tgz https://github.com/minishift/minishift/releases/download/v1.23.0/minishift-1.23.0-linux-amd64.tgz &amp;&amp; tar xvzf minishift.tgz */minishift &amp;&amp; sudo mv $_ /usr/local/bin/ &amp;&amp; rm -d minishift-* &amp;&amp; rm minishift.tgz</code></pre>
-    <p>One line install for macOS:</p>
-    <pre><code contenteditable>curl -Lo minishift.tgz https://github.com/minishift/minishift/releases/download/v1.23.0/minishift-1.23.0-darwin-amd64.tgz &amp;&amp; tar xvzf minishift.tgz */minishift &amp;&amp; sudo mv $_ /usr/local/bin/ &amp;&amp; rm -d minishift-* &amp;&amp; rm minishift.tgz</code></pre>
-    <p>Optionally, customize your cluster's memory or cpu allocation:</p>
-    <pre><code contenteditable>minishift config set memory 4096
-  minishift config set cpus 2
-  minishift config set openshift-version latest</code></pre>
-    <p>to verify <code>minishift</code> availability:</p>
-    <pre><code contenteditable>minishift version</code></pre>
-  </section>
-  
-  <section id='minishift-virt'>
-    <h4>Virtualization Plugins</h4>
-    <p>See the <a href="https://docs.openshift.org/latest/minishift/getting-started/installing.html#install-prerequisites"><code>minishift</code> installation guide</a> for <a href="https://docs.openshift.org/latest/minishift/getting-started/setting-up-driver-plugin.html">virt driver plugin requirements</a></p>
-  
-    <br/>
-    <p>If your minishift environment does not boot correctly:</p>
-    <ol>
-    <li>Minishift <a href="https://docs.openshift.org/latest/minishift/getting-started/installing.html#install-prerequisites">requires an OS virtualization solution</a>. Most OSes already include one!</li>
-    <li><a href="https://docs.openshift.org/latest/minishift/getting-started/setting-up-driver-plugin.html">Install the appropriate driver plugin</a> for your system</li>
-    <li>Use the <a href="https://docs.openshift.org/latest/minishift/getting-started/setting-up-driver-plugin.html"><code>--vm-driver</code></a> flag to select specific plugins by name</li>
-    </ol>
-    <pre><code contenteditable>minishift start --vm-driver=virtualbox</code></pre>
-  </section>
-  
-  <section id='minishift-basics' markdown>
-    <h2>Minishift Basics</h2>
-    <p><code>minishift</code> provides an easy way to run OpenShift locally:</p>
-    <pre><code contenteditable>minishift start</code></pre>
-    <p>When you are done, halt the VM to free up system resources:</p>
-    <pre><code contenteditable>minishift stop</code></pre>
-    <p>Need a fresh start? Delete your VM instance with:</p>
-    <pre><code contenteditable>minishift delete</code></pre>
-  </section>
-  
-  <section id='docker'>
-    <h3>Install docker</h3>
-    <p>Use your package manager, or download a release from <a href="https://store.docker.com/search?offering=community&amp;type=edition">Docker</a></p>
-    <pre><code contenteditable>brew cask install docker
-  dnf install docker
-  apt-get install docker</code></pre>
-    <br/>
-    <p>To verify <code>docker</code> availability, run:</p>
-    <pre><code contenteditable>docker version</code></pre>
   </section>
   </section>
   
@@ -242,21 +156,25 @@
   
   To follow along, sign in with your username and a password of "openshift" at the following url:
   
-  https:/training-terminal.apps.nodejsint.openshiftworkshop.com
+  left: https://lab-k8s-for-js-default.apps.cluster-nodeconf-57e5.nodeconf-57e5.example.opentlc.com
+      
+  
+  right: https://lab-k8s-for-js-workshops.apps.cluster-nodeconf-180f.nodeconf-180f.example.opentlc.com
   </section>
-  
-  
+      
   <section>
     <section data-transition='zoom-in convex-out' id='ready'>
     <h1><i>Ready?</i></h1>
       <br/>
     <div class='fragment fade-up'>
         <p>Before we get started, you'll need to configure your <code>~/.kube/config</code> file. We will do this by running:</p>
-      <pre><code contenteditable>export API_SERVER=https://$(minishift ip):8443
-  export API_SERVER=https://master.nodejsint.openshiftworkshop.com
-  export USER_ID=userN
-  export NAMESPACE=userN
-  oc login $API_SERVER -u $USER_ID</code></pre>
+      <pre><code contenteditable>export GUID=180f
+export API_SERVER=https://api.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opentlc.com:6443
+export NAMESPACE=$(oc project --short)
+export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opentlc.com</code></pre>
+        
+<pre><code contenteditable>curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.2/bin/linux/amd64/kubectl && chmod +x kubectl</code></pre>
+        
     </div>
     <div class='fragment fade-up'>
         <p>Confirm that you've been authenticated by running:</p>
@@ -292,13 +210,6 @@
     * implements the [RAFT](https://raft.github.io/raft.pdf) consensus protocol
     * CAP theorum: [CAP twelve years later](https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed)
     </section>
-    <section data-markdown>
-    ## Etcd cluster sizes
-    
-    Fault tolerance sizing chart:
-    
-    ![etcd cluster sizing chart](http://cloudgeekz.com/wp-content/uploads/2016/10/etcd-fault-tolerance-table.png)
-    </section>
   
     <section id='an-api' data-markdown>
   Kubernetes provides&hellip;
@@ -318,7 +229,7 @@
   
   Extended Kubernetes API Reference: 
   
-  http://k8s.io/docs/reference/generated/kubernetes-api/v1.12/
+  http://k8s.io/docs/reference/generated/kubernetes-api/v1.14/
   </section>
   
   <section data-transition="linear" id='terminology' data-markdown>
@@ -349,15 +260,15 @@
       <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/nodes</code></pre>
     </section>
   
-    <section data-markdown>  
-    ### Observations:
-  
-    * Designed to exist on multiple machines (distributed system)
-      * built for high availability
-      * platform scale out
-    * Your JS runs on nodes!
-  
-    </section>
+<section data-markdown>  
+### Observations:
+
+* Designed to exist on multiple machines (distributed system)
+  * built for high availability
+  * platform scale out
+* Your JS runs on nodes!
+
+</section>
   </section>
     
     
@@ -375,36 +286,36 @@
       <pre><code contenteditable>kubectl get pods</code></pre>   
       <p>Create a new resource based on a json object specification:</p>
       <pre><code contenteditable>kubectl create -f https://raw.githubusercontent.com/jankleinert/hello-workshop/master/pod.json
-  #curl -O https://raw.githubusercontent.com/ryanj/hello-world/master/pod.json && curl -k -H"Authorization: Bearer $(oc whoami -t)" -H'Content-Type: application/json' $API_SERVER/api/v1/namespaces/$(oc whoami)/pods -X POST --data-binary @pod.json</code></pre>
+  #curl -O https://raw.githubusercontent.com/ryanj/hello-k8s/master/pod.json && curl -k -H"Authorization: Bearer $(oc whoami -t)" -H'Content-Type: application/json' $API_SERVER/api/v1/namespaces/$NAMESPACE/pods -X POST --data-binary @pod.json</code></pre>
       <p>List pods by type using <code>curl</code>:</p>
-      <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$(oc whoami)/pods</code></pre>    
+      <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$NAMESPACE/pods</code></pre>    
       <p>Fetch an individual resource by <code>type/id</code>; output as <code>json</code>:</p>  
-      <pre><code contenteditable>kubectl get pod hello-world -o json
-  curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$(oc whoami)/hello-world</code></pre>
+      <pre><code contenteditable>kubectl get pod hello-k8s -o json
+  curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$NAMESPACE/pods/hello-k8s</code></pre>
       <p class='fragment'>Notice any changes between the json spec and the API response?</p>
     </section>
   
     <section>
       <!--
       <p>Request the same info using <code>curl</code>:</p>
-      <pre><code contenteditable>curl -k -H'Authorization: Bearer $(oc whoami -t)' $API_SERVER/api/v1/namespaces/$(oc whoami)/pods/hello-world</code></pre>
+      <pre><code contenteditable>curl -k -H'Authorization: Bearer $(oc whoami -t)' $API_SERVER/api/v1/namespaces/$NAMESPACE/pods/hello-world</code></pre>
       -->
       <p>Request the same info, but output the results as structured yaml:</p>
-      <pre><code contenteditable>kubectl get pod hello-world -o yaml</code></pre>
+      <pre><code contenteditable>kubectl get pod hello-k8s -o yaml</code></pre>
       <p>Print human-readable API output:</p>
-      <pre><code contenteditable>kubectl describe pod/hello-world</code></pre>
+      <pre><code contenteditable>kubectl describe pod/hello-k8s</code></pre>
     </section>
   
-    <section data-markdown>  
-    ### Observations:
-  
-    * API resources provide declarative specifications with asyncronous fulfilment of requests
-      * see `spec` vs `status`
-    * automated health checking for PID1 in each container
-    * Pods are scheduled to be run on nodes 
-    * The API ambidextriously supports both json and yaml
+<section data-markdown>  
+### Observations:
+
+* API resources provide declarative specifications with asyncronous fulfilment of requests
+  * see `spec` vs `status`
+* automated health checking for PID1 in each container
+* Pods are scheduled to be run on nodes 
+* The API ambidextriously supports both json and yaml
     
-    </section>
+</section>
   
     <!--
     <section data-markdown>  
@@ -421,34 +332,34 @@
     <section id='connections'>
       <h3>Contacting your App</h3>
       <p>Expose the pod by creating a new <code>service</code> (or "loadbalancer"):</p>
-      <pre><code contenteditable>kubectl expose pod/hello-world --port 8080 --type=NodePort</code></pre>
+      <pre><code contenteditable>kubectl expose pod/hello-k8s --port 8080 --type=NodePort</code></pre>
       <p>Take a look at the resulting <code>{.spec.selector}</code> attribute:</p>
-      <pre><code contenteditable>kubectl get svc/hello-world -o json</code></pre>
+      <pre><code contenteditable>kubectl get svc/hello-k8s -o json</code></pre>
       <p>Try using a <a href="https://kubernetes.io/docs/reference/kubectl/jsonpath/">JSONpath</a> selector to find the assigned port number:</p>
-      <pre><code contenteditable>kubectl get svc/hello-world -o jsonpath={.spec.ports[0].nodePort}</code></pre>
+      <pre><code contenteditable>kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort}</code></pre>
       <p>Contact your newly-exposed pod via the assigned port number:</p>
-      <pre><code contenteditable>echo www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-world -o jsonpath={.spec.ports[0].nodePort})</code></pre>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-world -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>echo www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
     </section>
     <section>
       <p>Schedule the deletion of all pods that are labeled with:</p>
-      <pre><code contenteditable>kubectl get pods -l run=hello-world</code></pre>
-      <pre><code contenteditable>kubectl delete pods -l run=hello-world</code></pre>
+      <pre><code contenteditable>kubectl get pods -l run=hello-k8s</code></pre>
+      <pre><code contenteditable>kubectl delete pods -l run=hello-k8s</code></pre>
       <p>Contact the related service. What happens?:</p>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-world -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
       <p>Delete the service:</p>
-      <pre><code contenteditable>kubectl delete service hello-world</code></pre>
+      <pre><code contenteditable>kubectl delete service hello-k8s</code></pre>
     </section>
   
-    <section data-markdown>  
-    ### Observations:
-  
-    * *"service"* basically means *"loadbalancer"*
-    * Label selectors can be used to organize workloads and manage groups of related resouces
-    * The Service resource uses label selectors to discover where traffic should be directed
-    * Pods and Services exist independently, have disjoint lifecycles
+<section data-markdown>  
+### Observations:
+ 
+* *"service"* basically means *"loadbalancer"*
+* Label selectors can be used to organize workloads and manage groups of related resouces
+* The Service resource uses label selectors to discover where traffic should be directed
+* Pods and Services exist independently, have disjoint lifecycles
       
-    </section>
+</section>
   </section>
   <section>
     <section data-transition="linear" id='deployment' data-markdown>
@@ -457,33 +368,39 @@
     </section>
     <section>
       <p>Create a specification for your <code>deployment</code>:</p>
-      <pre><code contenteditable>kubectl run nodejs-int --image=jkleinert/nodejsint-workshop \
+      <pre><code contenteditable>kubectl run hello-k8s --image=jkleinert/nodejsint-workshop \
   --dry-run -o json &gt; deployment.json</code></pre>
       <p>View the generated deployment spec file:</p>
       <pre><code contenteditable>cat deployment.json</code></pre>
+    </section>
+    <section>        
+      <p>Create new resources based on your spec files:</p>
+      <pre><code contenteditable>kubectl create -f deployment.json</code></pre>
+    </section>
+    <section>        
       <p>Create a <code>Service</code> spec to direct traffic:</p>
-      <pre><code contenteditable>kubectl expose deploy/hello-world --type=NodePort --port=8080 --dry-run -o json &gt; service.json</code></pre>
+      <pre><code contenteditable>kubectl expose deploy/hello-k8s --type=NodePort --port=8080 --dry-run -o json &gt; service.json</code></pre>
       <p>View the resulting spec file:</p>
       <pre><code contenteditable>cat service.json</code></pre>
     </section>
     <section>
-      <p>Create new resources based on your spec files:</p>
-      <pre><code contenteditable>kubectl create -f deployment.json -f service.json</code></pre>
+      <p>Create a new service based on your spec file:</p>
+      <pre><code contenteditable>kubectl create -f service.json</code></pre>
       <p>List multiple resources by type:</p>
       <pre><code contenteditable>kubectl get po,svc,deploy</code></pre>
       <p>Connect to your new deployment via the associated service id:</p>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-world -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
     </section>
     <section id='replication'>
       <h2>Replication</h2>
-      <p>Scale up the <code>hello-world</code> deployment to 3 replicas:</p>
-      <pre><code contenteditable>kubectl scale deploy/hello-world --replicas=3</code></pre>
+      <p>Scale up the <code>hello-k8s</code> deployment to 3 replicas:</p>
+      <pre><code contenteditable>kubectl scale deploy/hello-k8s --replicas=3</code></pre>
       <p>List pods:</p>
       <pre><code contenteditable>kubectl get po</code></pre>
     </section>
     <section>
-      <p>Edit <code>deploy/hello-world</code>, setting <code>spec.replicas</code> to <code>5</code>:</p>
-      <pre><code contenteditable>kubectl edit deploy/hello-world -o json</code></pre>
+      <p>Edit <code>deploy/hello-k8s</code>, setting <code>spec.replicas</code> to <code>5</code>:</p>
+      <pre><code contenteditable>kubectl edit deploy/hello-k8s -o json</code></pre>
       <p>Save and quit. What happens?</p>
       <pre><code contenteditable>kubectl get pods</code></pre>
     </section>
@@ -492,18 +409,18 @@
       <p>Watch for changes to <code>pod</code> resources:</p>
       <pre><code contenteditable>kubectl get pods --watch &</code></pre>
       <p>In another terminal, delete several pods by id:</p>
-      <pre><code contenteditable>kubectl delete pod $(kubectl get pods | grep ^hello-world | cut -f1 -s -d' ' | head -n 3 | tr '\n' ' ')</code></pre>
+      <pre><code contenteditable>kubectl delete pod $(kubectl get pods | grep ^hello-k8s | cut -f1 -s -d' ' | head -n 3 | tr '\n' ' ')</code></pre>
       <p class='fragment'>What happened? How many pods remain?</p>
       <pre class='fragment'><code contenteditable>kubectl get pods</code></pre>
     </section>
-    <section data-markdown>  
-    ### Observations:
+<section data-markdown>  
+### Observations:
   
-    * Use the `--dry-run` flag to generate new resource specifications
-    * A deployment spec contains a pod spec in it's "template" element 
-    * The API provides `edit` and `watch` operations (in addition to `get`, `set`, and `list`)
+* Use the `--dry-run` flag to generate new resource specifications
+* A deployment spec contains a pod spec in it's "template" element 
+* The API provides `edit` and `watch` operations (in addition to `get`, `set`, and `list`)
     
-    </section>
+</section>
   </section>
   <section>
     <section data-transition="linear" id='rs' data-markdown>
@@ -512,48 +429,42 @@
     </section>
     <section>
       <p>View the current state of your deployment:</p>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-world -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
       <p>Watch deployments:</p>
       <pre><code contenteditable>kubectl get deploy -w &amp;</code></pre>
     </section>
     <section>
       <h3>Rollouts</h3>
       <p>Update your deployment's image spec to rollout a new release:</p>
-      <pre><code contenteditable>kubectl set image deploy/hello-world hello-world=quay.io/ryanj/hello-world:v1</code></pre>
+      <pre><code contenteditable>kubectl set image deploy/hello-k8s hello-k8s=quay.io/ryanj/metrics-k8s:v1</code></pre>
       <p>Reload your browser to view the state of your deployment</p>
       <pre><code contenteditable>kubectl get rs</code></pre> 
     </section>
     <section>
       <h3>Rollbacks</h3>
       <p>View the list of previous rollouts:</p>
-      <pre><code contenteditable>kubectl rollout history deploy/hello-world</code></pre>
+      <pre><code contenteditable>kubectl rollout history deploy/hello-k8s</code></pre>
       <p>Rollback to the previous state:</p>
-      <pre><code contenteditable>kubectl rollout undo deployment hello-world</code></pre>
+      <pre><code contenteditable>kubectl rollout undo deployment hello-k8s</code></pre>
       <p>Reload your browser to view the state of your deployment</p>
     </section>
     <section>
       <h3>Cleanup</h3>
       <p>Cleanup all resources:</p>
-      <pre><code contenteditable>kubectl delete service,deployment hello-world</code></pre>
+      <pre><code contenteditable>kubectl delete service,deployment hello-k8s</code></pre>
       <p>Close your remaining <code>--watch</code> listeners by running `fg` and sending a break signal (CTRL-c)</p>
       <br/>
       <p>Verify that your namespace is clean:</p>
       <pre><code contenteditable>kubectl get all</code></pre>
     </section>
-    <section data-markdown>  
-    ### Observations:
-  
-    * ReplicaSets provide lifecycle management for pod resources
-    * Deployments create ReplicaSets to manage pod replication per rollout (per change in podspec: image:tag, environment vars)
-    * Deployments &gt; ReplicaSets &gt; Pods
-    
-    </section>
-  
-    <section data-markdown id='from-kubecon'>  
-    From Kubecon 2017: "Developing Locally with Kubernetes" 
-      
-    "[Local Dev with K8s](http://bit.ly/kubecon-dev)": [youtu.be/_W6O_pfA00s](http://youtu.be/_W6O_pfA00s)
-    </section>  
+<section data-markdown>  
+### Observations:
+
+* ReplicaSets provide lifecycle management for pod resources
+* Deployments create ReplicaSets to manage pod replication per rollout (per change in podspec: image:tag, environment vars)
+* Deployments &gt; ReplicaSets &gt; Pods
+
+</section>
   </section>
   
   <section data-transition="convex" id='hands-on-with-openshift'>  
@@ -624,19 +535,14 @@
   <section id='try-openshift' data-markdown>
     ### More Ways to Try OpenShift
     * [OpenShift Learning Portal](http://learn.openshift.com)
-    * [OpenShift Origin](https://github.com/openshift/origin) (and [minishift](https://github.com/minishift/minishift))
-    * [OpenShift Online (Starter and Pro plans available)](https://www.openshift.com/products/online/)
-    * [OpenShift Dedicated (operated on AWS, GCE, and Azure)](https://www.openshift.com/products/dedicated/)
-    * [OpenShift Container (supported on RHEL, CoreOS)](https://www.openshift.com/products/container-platform/)
-    
-    for a local laptop install see [minikube](http://bit.ly/k8s-minikube) and/or [minishift](http://bit.ly/k8s-minishift)
+    * [try.openshift.com](https://try.openshift.com)
   </section>
   <section data-markdown>
    ## Top Tools for K8s JS Hackers
   
+   * https://github.com/nodeshift 
    * https://www.npmjs.com/package/openshift-rest-client
    * https://www.npmjs.com/package/nodeshift
-   * https://github.com/bucharest-gold/centos7-s2i-nodejs 
   
   </section>
   
@@ -654,7 +560,7 @@
     <p><img style="width:33%;" alt="RyanJ" src="https://tek.phparch.com/wp-content/uploads/sites/7/2018/05/ryan-jarvinen-headshot-e1525184794614-531x424.jpg" /></p>
     <p><a href="https://twitter.com/ryanj">@RyanJ</a></p>
     <br/>
-    <h3 class="fragment grow" style='text-transform:none;'><a href="http://bit.ly/nodejs-on-k8s">bit.ly/nodejs-on-k8s</a></h3>
+    <h3 class="fragment grow" style='text-transform:none;'><a href="http://bit.ly/k8s-interactive">bit.ly/k8s-interactive</a></h3>
   </section>
 </div>
 </div>

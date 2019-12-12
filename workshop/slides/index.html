@@ -148,7 +148,7 @@
   2. Select a username the sheet that hasn't been claimed. Write your name in the column to the right to claim it.
   3. To follow along, sign in with your selected username ("userN") and a password of "openshift" at the following url:
   
-  https://lab-k8s-for-js-workshops.apps.cluster-nodejs-22aa.nodejs-22aa.example.opentlc.com/
+  https://lab-k8s-for-js-workshop.apps.cluster-nodeconf-9a61.nodeconf-9a61.example.opentlc.com
   </section>
       
   <section>
@@ -157,10 +157,10 @@
       <br/>
     <div class='fragment fade-up'>
       <p>Before we get started, please export the following env vars:</p>
-      <pre><code contenteditable>export GUID=22aa
-export API_SERVER=https://api.cluster-nodejs-$GUID.nodejs-$GUID.example.opentlc.com:6443
+      <pre><code contenteditable>export GUID=9a61
+export API_SERVER=https://api.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opentlc.com:6443
 export NAMESPACE=$(oc project --short)
-export NODE_IP=10.0.137.205</code></pre>
+export NODE_IP=10.0.159.38</code></pre>
         
     </div>
     <div class='fragment fade-up'>
@@ -195,10 +195,13 @@ export NODE_IP=10.0.137.205</code></pre>
   
     ![etcd logo](https://raw.githubusercontent.com/coreos/etcd/master/logos/etcd-glyph-color.png)
   
-    * distributed key-value store
+    * developed at CoreOS, donated to the CNCF
+    * distributed key-value store with automatic leader election
     * implements the [RAFT](https://raft.github.io/raft.pdf) consensus protocol
     * CAP theorum: [CAP twelve years later](https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed)
-    </section>
+  
+  http://play.etcd.io/play
+  </section>
   
     <section id='an-api' data-markdown>
   Kubernetes provides&hellip;
@@ -274,6 +277,8 @@ export NODE_IP=10.0.137.205</code></pre>
       <p>Create a new resource based on a json object specification:</p>
       <pre><code contenteditable>curl https://raw.githubusercontent.com/jankleinert/hello-workshop/master/pod.json</code></pre>
       <pre><code contenteditable>kubectl create -f https://raw.githubusercontent.com/jankleinert/hello-workshop/master/pod.json</code></pre>
+    </section>
+    <section>
       <p>List pods by type using <code>curl</code>:</p>
       <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$NAMESPACE/pods</code></pre>    
       <p>Fetch an individual resource by <code>type/id</code>; output as <code>json</code>:</p>  
@@ -551,6 +556,7 @@ export NODE_IP=10.0.137.205</code></pre>
     <br/>
     <h3 class="fragment grow" style='text-transform:none;'><a href="http://bit.ly/k8s-interact">bit.ly/k8s-interact</a></h3>
   </section>
+
 
 </div>
 </div>

@@ -24,21 +24,10 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-		<!--
-
 <section data-background-transition="none-in zoom-out" data-transition="zoom" id="HANDS-ON" data-background="https://gist.githubusercontent.com/ryanj/9181e48c0dd8e6b45d692a11d5a72bd5/raw/9892bcb34a809c25c24c43a2ea33bb69b7684f0b/node-js-interactive-1.jpg" data-background-color="black" data-background-size="cover" data-background-position="top">
     <h3 style="color:white;padding-top:26%;">Hands-on Intro to</h3>
     <h1 style="color:white;font-size:113px;">Kubernetes & OpenShift</h1>
     <h3 style="color:white;">{ for JS Developers }</h3>
-    <p class='fragment grow'><a style="font-weight:bold;" href="http://gist-reveal.it/bit.ly/nodejs-on-k8s?theme=9181e48c0dd8e6b45d692a11d5a72bd5">bit.ly/nodejs-on-k8s</a></p>
-    <p><a href="https://www.nodeconf.eu/nc-agenda/">Monday, November 11 16:00 - 17:30</a></p>
-  </section> 
-                -->
-  
-<section data-background-transition="none-in zoom-out" data-transition="zoom" id="HANDS-ON" data-background-color="white">
-    <h3 style="padding-top:26%;">Hands-on Intro to</h3>
-    <h1 style="font-size:113px;">Kubernetes & OpenShift</h1>
-    <h3>{ for JS Developers }</h3>
     <p class='fragment grow'><a style="font-weight:bold;" href="http://bit.ly/k8s-interactive">bit.ly/k8s-interactive</a></p>
     <p><a href="https://sched.co/T5Ga">Thursday, Dec 12 9:00 - 10:50, Room 512D</a></p>
   </section> 
@@ -156,10 +145,7 @@
   
   To follow along, sign in with your username and a password of "openshift" at the following url:
   
-  left: https://lab-k8s-for-js-default.apps.cluster-nodeconf-57e5.nodeconf-57e5.example.opentlc.com
-      
-  
-  right: https://lab-k8s-for-js-workshops.apps.cluster-nodeconf-180f.nodeconf-180f.example.opentlc.com
+  https://lab-k8s-for-js-workshops.apps.cluster-nodejs-22aa.nodejs-22aa.example.opentlc.com/
   </section>
       
   <section>
@@ -168,12 +154,10 @@
       <br/>
     <div class='fragment fade-up'>
         <p>Before we get started, you'll need to configure your <code>~/.kube/config</code> file. We will do this by running:</p>
-      <pre><code contenteditable>export GUID=180f
-export API_SERVER=https://api.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opentlc.com:6443
+      <pre><code contenteditable>export GUID=22aa
+export API_SERVER=https://api.cluster-nodejs-$GUID.nodejs-$GUID.example.opentlc.com:6443
 export NAMESPACE=$(oc project --short)
-export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opentlc.com</code></pre>
-        
-<pre><code contenteditable>curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.2/bin/linux/amd64/kubectl && chmod +x kubectl</code></pre>
+export NODE_IP=10.0.137.205</code></pre>
         
     </div>
     <div class='fragment fade-up'>
@@ -256,17 +240,15 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
     <section>
       <p>Try using <code>kubectl</code> to list resources by type:</p>
       <pre><code contenteditable>kubectl get nodes</code></pre>
-      <p>Try using <code>curl</code> to list nodes:</p>
-      <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/nodes</code></pre>
     </section>
   
 <section data-markdown>  
 ### Observations:
 
-* Designed to exist on multiple machines (distributed system)
-  * built for high availability
-  * platform scale out
-* Your JS runs on nodes!
+* Your JS runs on Nodes! (machines)
+* Kubernetes actively manages process availability and health over groups of machines (distributed system)
+  * built for high availability (of platform, of workloads)
+  * Scale out by adding more Nodes to the pool
 
 </section>
   </section>
@@ -285,13 +267,13 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
       <p>Try using <code>kubectl</code> to list resources by type:</p>
       <pre><code contenteditable>kubectl get pods</code></pre>   
       <p>Create a new resource based on a json object specification:</p>
-      <pre><code contenteditable>kubectl create -f https://raw.githubusercontent.com/jankleinert/hello-workshop/master/pod.json
-  #curl -O https://raw.githubusercontent.com/ryanj/hello-k8s/master/pod.json && curl -k -H"Authorization: Bearer $(oc whoami -t)" -H'Content-Type: application/json' $API_SERVER/api/v1/namespaces/$NAMESPACE/pods -X POST --data-binary @pod.json</code></pre>
+      <pre><code contenteditable>curl https://raw.githubusercontent.com/jankleinert/hello-workshop/master/pod.json</code></pre>
+      <pre><code contenteditable>kubectl create -f https://raw.githubusercontent.com/jankleinert/hello-workshop/master/pod.json</code></pre>
       <p>List pods by type using <code>curl</code>:</p>
       <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$NAMESPACE/pods</code></pre>    
       <p>Fetch an individual resource by <code>type/id</code>; output as <code>json</code>:</p>  
-      <pre><code contenteditable>kubectl get pod hello-k8s -o json
-  curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$NAMESPACE/pods/hello-k8s</code></pre>
+      <pre><code contenteditable>curl -k -H"Authorization: Bearer $(oc whoami -t)" $API_SERVER/api/v1/namespaces/$NAMESPACE/pods/hello-k8s</code></pre>
+      <pre><code contenteditable>kubectl get pod hello-k8s -o json</code></pre>
       <p class='fragment'>Notice any changes between the json spec and the API response?</p>
     </section>
   
@@ -335,18 +317,25 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
       <pre><code contenteditable>kubectl expose pod/hello-k8s --port 8080 --type=NodePort</code></pre>
       <p>Take a look at the resulting <code>{.spec.selector}</code> attribute:</p>
       <pre><code contenteditable>kubectl get svc/hello-k8s -o json</code></pre>
+      <p>Contact your newly-exposed pod via internal kube-dns:</p>
+      <pre><code contenteditable>echo hello-k8s.$NAMESPACE:8080</code></pre>
+      <pre><code contenteditable>curl hello-k8s.$NAMESPACE:8080</code></pre>
+    </section>
+    <section id='connections-2'>
+      <h3>NodePort Access</h3>    
       <p>Try using a <a href="https://kubernetes.io/docs/reference/kubectl/jsonpath/">JSONpath</a> selector to find the assigned port number:</p>
       <pre><code contenteditable>kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort}</code></pre>
       <p>Contact your newly-exposed pod via the assigned port number:</p>
-      <pre><code contenteditable>echo www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>echo $NODE_IP:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl $NODE_IP:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
     </section>
     <section>
-      <p>Schedule the deletion of all pods that are labeled with:</p>
+      <h3>Cleanup</h3>
+      <p>Schedule the deletion of all pods that are labeled with <code>run=hello-k8s</code>:</p>
       <pre><code contenteditable>kubectl get pods -l run=hello-k8s</code></pre>
       <pre><code contenteditable>kubectl delete pods -l run=hello-k8s</code></pre>
       <p>Contact the related service. What happens?:</p>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl hello-k8s.$NAMESPACE:8080</code></pre>
       <p>Delete the service:</p>
       <pre><code contenteditable>kubectl delete service hello-k8s</code></pre>
     </section>
@@ -389,7 +378,7 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
       <p>List multiple resources by type:</p>
       <pre><code contenteditable>kubectl get po,svc,deploy</code></pre>
       <p>Connect to your new deployment via the associated service id:</p>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl hello-k8s.$NAMESPACE:8080</code></pre>
     </section>
     <section id='replication'>
       <h2>Replication</h2>
@@ -418,7 +407,7 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
   
 * Use the `--dry-run` flag to generate new resource specifications
 * A deployment spec contains a pod spec in it's "template" element 
-* The API provides `edit` and `watch` operations (in addition to `get`, `set`, and `list`)
+* The API provides `edit` and `watch` operations in addition to `get`, `set`, and `list`
     
 </section>
   </section>
@@ -429,16 +418,18 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
     </section>
     <section>
       <p>View the current state of your deployment:</p>
-      <pre><code contenteditable>curl www.apps.nodejsint.openshiftworkshop.com:$(kubectl get svc/hello-k8s -o jsonpath={.spec.ports[0].nodePort})</code></pre>
+      <pre><code contenteditable>curl hello-k8s.$NAMESPACE:8080</code></pre>
       <p>Watch deployments:</p>
       <pre><code contenteditable>kubectl get deploy -w &amp;</code></pre>
     </section>
     <section>
       <h3>Rollouts</h3>
       <p>Update your deployment's image spec to rollout a new release:</p>
-      <pre><code contenteditable>kubectl set image deploy/hello-k8s hello-k8s=quay.io/ryanj/metrics-k8s:v1</code></pre>
-      <p>Reload your browser to view the state of your deployment</p>
-      <pre><code contenteditable>kubectl get rs</code></pre> 
+      <pre><code contenteditable>kubectl set image deploy/hello-k8s hello-k8s=jkleinert/nodejsint-workshop:v1</code></pre>
+      <pre><code contenteditable>kubectl get rs</code></pre>
+      <p>View the state of your deployment</p>
+      <pre><code contenteditable>curl hello-k8s.$NAMESPACE:8080</code></pre>
+
     </section>
     <section>
       <h3>Rollbacks</h3>
@@ -446,8 +437,8 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
       <pre><code contenteditable>kubectl rollout history deploy/hello-k8s</code></pre>
       <p>Rollback to the previous state:</p>
       <pre><code contenteditable>kubectl rollout undo deployment hello-k8s</code></pre>
-      <p>Reload your browser to view the state of your deployment</p>
-    </section>
+      <p>View the state of your deployment</p>
+      <pre><code contenteditable>curl hello-k8s.$NAMESPACE:8080</code></pre>    </section>
     <section>
       <h3>Cleanup</h3>
       <p>Cleanup all resources:</p>
@@ -467,20 +458,8 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
 </section>
   </section>
   
-  <section data-transition="convex" id='hands-on-with-openshift'>  
-      <h1>Hands-On with OpenShift</h1>
-      <p class='fragment'>For the rest of the workshop, go back to the interactive lab environment </p>
-  </section>
-    
-  
-  
-  
-  <section>
-    <section id='wrap-up'>  
-      <h1>Wrap Up</h1>
-    </section>
-    <section id='exit-survey'>
-    <h3>Exit Survey</h3>
+ <section id='exit-survey'>
+    <h3>Part 1 - Exit Survey</h3>
   <ol>
   <li class='fragment'>have experience using containers?</li>
   <li class='fragment'>have experience using Kubernetes?</li>
@@ -489,8 +468,13 @@ export HOST_PORT=http://apps.cluster-nodeconf-$GUID.nodeconf-$GUID.example.opent
   <li class='fragment'>Ready to start standardizing your web development processes with containers?</li>
   </ol>
     </section>
+
+  <section data-transition="convex" id='hands-on-with-openshift'>
+      <h2>Part 2</h2>
+      <h1>Hands-On with OpenShift</h1>
+      <p class='fragment'>For the rest of the workshop, go back to the interactive lab environment </p>
   </section>
-  
+
   <section>
     <section data-markdown>
       ## Resources

@@ -10,8 +10,11 @@ modules:
         exit_sign: Git Push to Deploy
     03-git-push-to-deploy:
         name: Git Push to Deploy
+        exit_sign: Live Development
+    04-oc-rsync:
+        name: Live Development
         exit_sign: Additional Tools and Info
-    04-additional-tools-info:
+    05-additional-tools-info:
         name: Additional Tools and Info
         exit_sign: Finish Workshop
 

@@ -20,10 +20,10 @@ their content in isolation from other communities. Each project has its own
 resources, policies (who can or cannot perform actions), and constraints (quotas
 and limits on resources, etc). 
 
-In this lab environment, you already have access to single project: **%project_namespace%**.
+In this lab environment, you already have access to single project: **%username%**.
 
 If you had multiple projects, the first thing you would want to do is to switch
-to the **%project_namespace** project to make sure you're on the correct project from now on.
+to the **%username%** project to make sure you're on the correct project from now on.
 You can do this with the following command:
 
 ```execute-1
@@ -39,8 +39,8 @@ To get a feel for how the web console works, switch to the web console by clicki
 
 The first time you access the web console, you will most likely be in the Administrator perspective. You will be presented with the list of Projects that you can access.
 
-Click on the **%project_namespace%** project link. When you click on the
-**%project_namespace%** project, you will be taken to the project details page,
+Click on the **%username%** project link. When you click on the
+**%username%** project, you will be taken to the project details page,
 which will list some metrics and details about your project. There's nothing there now, but that will change as you progress through the lab.
 
 At the top of the left navigation menu, you can toggle between the Administrator perspective and the Developer perspective.

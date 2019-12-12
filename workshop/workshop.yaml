@@ -6,4 +6,5 @@ modules:
     - 01-cli-console
     - 02-build-from-source
     - 03-git-push-to-deploy
-    - 04-additional-tools-info
+    - 04-oc-rsync
+    - 05-additional-tools-info

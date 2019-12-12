@@ -7,8 +7,20 @@ remote systems in order to trigger builds. By pointing the code repository's
 hook at the OpenShift API, automated code/build/deploy pipelines can be
 achieved.
 
+## Clone a Local Copy of Your Fork
+Clone a local copy of your fork:
+```copy-and-edit
+git clone https://github.com/YOUR_GITHUB_USER/http-base
+```
+
+Then `cd` to the directory:
+
+```execute-1
+cd http-base
+```
+
 ## Configuring GitHub Web Hooks
-In this section you can use a build webhook to trigger a new build any time there is a change to your repository. In the the Developer perspective in the web console, click **Builds** in the left navigation. Click the `beer-demo` build config and scroll down to the Webhooks section.
+In this section you can use a build webhook to trigger a new build any time there is a change to your repository. In the the Developer perspective in the web console, click **Builds** in the left navigation. Click the `http-base` build config and scroll down to the Webhooks section.
 
 There will be two entries in the Webhooks section. The GitHub webhook is the one we are interested in.
 
@@ -32,23 +44,23 @@ repository, a new build and deployment will occur inside of OpenShift.  Let's tr
 it out.
 
 ## Using GitHub Webhooks
-In the beer-demo branch, open `/views/index.pug` either an editor or in the GitHub web interface and change the H1 tag from 
+Make a small change to the index.html file, either in an editor or in the GitHub web interface. For example, you can change the H1 tag from 
 
 ```
-Click To Generate a Craft Beer Name!
+<h1>HTTP-base on OpenShift</h1>
 ```
 
 to something else, such as 
 
 ```
-Give Me a New Craft Beer Name!
+<h1>Hello OpenShift!</h1>
 ```
 
 Commit and push your changes.
 
 
 Once you have done that, a **Build** should almost instantaneously be
-triggered in OpenShift. From the **Topology** page, click the circle for `beer-demo` and look at the **Builds** section of the **Resources** tab, or, run the
+triggered in OpenShift. From the **Topology** page, click the circle for `http-base` and look at the **Builds** section of the **Resources** tab, or, run the
 following command to verify:
 
 ```execute-1
@@ -59,13 +71,11 @@ You should see that a new build is running:
 
 ```
 NAME          TYPE      FROM          STATUS     STARTED          DURATION
-beer-demo-1   Source    Git@b052ae6   Complete   17 minutes ago   1m27s
-beer-demo-2   Source    Git@3b26e1a   Running    6 seconds ago
+http-base-1   Source    Git@b052ae6   Complete   17 minutes ago   1m27s
+http-base-2   Source    Git@3b26e1a   Running    6 seconds ago
 ```
 
 Once the build and deploy has finished, verify your new image was
-automatically deployed by viewing the application in your browser:
-
-[Craft Beer Name Demo]http://beer-demo-%project_namespace%.%cluster_submdomain%
+automatically deployed by viewing the application in your browser.
 
 You should now see the new H1 tag on the page.
